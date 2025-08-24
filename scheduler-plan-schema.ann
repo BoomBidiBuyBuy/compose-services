@@ -1,0 +1,23 @@
+{
+    {
+        "thread_id": "<thread id that combines LLM context, might be user id as example>"
+    },
+    "unique_action_id_1": {
+        "mcp-service-endpoint": "<dns-or-ip-of-the-mcp-service-to-call>",
+        "mcp-tool-name": "<name-of-the-mcp-tool-to-call>",
+        "mcp-tool-arguments": {
+            "<arg1-name>": "<arg1-value>",
+            ...
+        },
+        "condition": "executes first"
+    },
+    "unique_action_id_2": {
+        "mcp-service-endpoint": ...,
+        "mcp-tool-name": ...,
+        "mcp-tool-arguments": {
+            ...
+        },
+        "condition": "<describe conditions when should be executed>"
+    },
+   ...
+}

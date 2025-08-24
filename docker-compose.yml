@@ -1,0 +1,53 @@
+version: '3.8' # Specifies the Compose file format version
+
+services:
+    scheduler:
+        image: apscheduler
+        ports:
+            - "${SCHEDULER_PORT}:8000"
+        environment:
+            - EXECUTION_STRATEGY=worker
+            - WORKER_ENDPOINT=http://${HOST_IP}:${WORKER_PORT}/mcp/
+            - WORKER_TOOL_NAME=execute_plan
+            - PLAN_SCHEMA_ANNOTATION_PATH=/app/plan-schema.ann
+        volumes:
+            - ./scheduler-plan-schema.ann:/app/plan-schema.ann
+
+    agentic-worker:
+        image: agentic-worker
+        ports:
+            - "${WORKER_PORT}:8000"
+        environment:
+            - OPENAI_API_KEY=${OPENAI_API_KEY}
+            - OPENAI_MODEL=${OPENAI_MODEL}
+            - MCP_SERVERS_FILE_PATH=/app/mcp-servers.json
+            - TELEGRAM_MCP_PORT=${TELEGRAM_MCP_PORT}
+            - SCHEDULER_PORT=${SCHEDULER_PORT}
+            - USERS_GROUPS_MCP_PORT=${USERS_GROUPS_MCP_PORT}
+            - HOST_IP=${HOST_IP}
+        volumes:
+            - ./worker-mcp-servers.json:/app/mcp-servers.json
+        depends_on:
+            - scheduler
+
+    telegram-bot:
+        image: telegram-bot
+        ports:
+            - "${TELEGRAM_BOT_WEBHOOK_PORT}:${TELEGRAM_BOT_WEBHOOK_PORT}"
+        environment:
+            - COMMUNICATION_MODE=polling
+            - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+            - AGENT_ENDPOINT=http://${HOST_IP}:${WORKER_PORT}
+            - STORAGE_DB=sqlite
+
+    telegram-mcp:
+        image: telegram-mcp
+        ports:
+            - "${TELEGRAM_MCP_PORT}:8000"
+        environment:
+            - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+
+    users-groups-mcp:
+        image: users-groups-mcp
+        ports:
+            - "${USERS_GROUPS_MCP_PORT}:8000" 
