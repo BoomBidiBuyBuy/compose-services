@@ -32,8 +32,6 @@ services:
 
     telegram-bot:
         image: telegram-bot
-        ports:
-            - "${TELEGRAM_BOT_WEBHOOK_PORT}:${TELEGRAM_BOT_WEBHOOK_PORT}"
         environment:
             - COMMUNICATION_MODE=polling
             - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
