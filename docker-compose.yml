@@ -35,6 +35,7 @@ services:
         environment:
             - USERS_GROUPS_MCP_PORT=${USERS_GROUPS_MCP_PORT}
             - HOST_IP=${HOST_IP}
+            - USERS_GROUPS_MCP_ENDPOINT=http://${HOST_IP}:${USERS_GROUPS_MCP_PORT}
             - TEACHER_TELEGRAM_ID=${TEACHER_TELEGRAM_ID}
             - COMMUNICATION_MODE=polling
             - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
