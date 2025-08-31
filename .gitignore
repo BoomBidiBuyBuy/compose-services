@@ -1,1 +1,6 @@
 .env
+apscheduler-mcp-server/
+mcp-agent-worker/
+telegram-agent-mcp/
+telegram-mcp-server/
+users-groups-mcp-server/
