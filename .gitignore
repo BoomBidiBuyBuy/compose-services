@@ -1,1 +1,13 @@
 .env
+apscheduler-mcp-server
+mcp-agent-worker
+mcp-registry
+telegram-agent-mcp
+telegram-mcp-server
+users-groups-mcp-server
+
+nohup.out
+.*swp
+
+registry.db
+users_groups.db
