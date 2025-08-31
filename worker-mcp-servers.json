@@ -4,13 +4,13 @@
             "transport": "streamable_http",
             "url": "http://${HOST_IP}:${SCHEDULER_PORT}/mcp/"
         },
-        "telegram-sender": {
-            "transport": "streamable_http",
-            "url": "http://${HOST_IP}:${TELEGRAM_MCP_PORT}/mcp/"
-        },
         "users-groups": {
             "transport": "streamable_http",
             "url": "http://${HOST_IP}:${USERS_GROUPS_MCP_PORT}/mcp/"
+        },
+        "mcp-registry": {
+            "transport": "streamable_http",
+            "url": "http://${HOST_IP}:${MCP_REGISTRY_PORT}/mcp/"
         }
     }
 }

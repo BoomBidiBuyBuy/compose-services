@@ -24,11 +24,13 @@ services:
             - TELEGRAM_MCP_PORT=${TELEGRAM_MCP_PORT}
             - SCHEDULER_PORT=${SCHEDULER_PORT}
             - USERS_GROUPS_MCP_PORT=${USERS_GROUPS_MCP_PORT}
+            - MCP_REGISTRY_ENDPOINT=http://${HOST_IP}:${MCP_REGISTRY_PORT}
             - HOST_IP=${HOST_IP}
         volumes:
             - ./worker-mcp-servers.json:/app/mcp-servers.json
         depends_on:
             - scheduler
+            - mcp-registry
 
     telegram-bot:
         image: telegram-bot
@@ -50,4 +52,15 @@ services:
     users-groups-mcp:
         image: users-groups-mcp
         ports:
-            - "${USERS_GROUPS_MCP_PORT}:8000" 
+            - "${USERS_GROUPS_MCP_PORT}:8000"
+        volumes:
+            - ./users_groups.db:/app/dev.db:rw  
+
+    mcp-registry:
+        image: mcp-registry
+        environment:
+            - AGENT_REREAD_HOOK=http://${HOST_IP}:${WORKER_PORT}/reread_tools
+        ports:
+            - "${MCP_REGISTRY_PORT}:8000"
+        volumes:
+            - ./registry.db:/app/dev.db:rw

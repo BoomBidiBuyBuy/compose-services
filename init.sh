@@ -3,41 +3,33 @@
 echo "==========================="
 echo "     apscheduler"
 echo "==========================="
-cd  apscheduler-mcp-server
-docker build -t apscheduler .
-cd ..
+git clone git@github.com:BoomBidiBuyBuy/apscheduler-mcp-server.git
 
 echo "==========================="
 echo "     agentic-worker"
 echo "==========================="
-cd mcp-agent-worker
-docker build -t agentic-worker .
-cd ..
+git clone git@github.com:BoomBidiBuyBuy/mcp-agent-worker.git
 
 echo "==========================="
 echo "     telegram-bot"
 echo "==========================="
-cd telegram-agent-mcp
-docker build -t telegram-bot .
-cd ..
+git clone git@github.com:BoomBidiBuyBuy/telegram-agent-mcp.git
 
 echo "==========================="
 echo "     telegram-mcp"
 echo "==========================="
-cd telegram-mcp-server
-docker build -t telegram-mcp .
-cd ..
+git clone git@github.com:BoomBidiBuyBuy/telegram-mcp-server.git
 
 echo "==========================="
 echo "     telegram-mcp"
 echo "==========================="
-cd users-groups-mcp-server
-docker build -t users-groups-mcp .
-cd ..
+git clone git@github.com:BoomBidiBuyBuy/users-groups-mcp-server.git
 
 echo "==========================="
 echo "     mcp-registry"
 echo "==========================="
-cd mcp-registry
-docker build -t mcp-registry .
-cd ..
+git clone git@github.com:BoomBidiBuyBuy/mcp-registry.git
+
+
+touch registry.db
+touch users_groups.db
