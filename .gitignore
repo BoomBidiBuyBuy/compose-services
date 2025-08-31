@@ -1,4 +1,5 @@
 .env
+
 apscheduler-mcp-server
 mcp-agent-worker
 mcp-registry
