@@ -36,7 +36,7 @@ services:
         image: telegram-bot
         environment:
             - USERS_GROUPS_MCP_ENDPOINT=http://${HOST_IP}:${USERS_GROUPS_MCP_PORT}
-            - TEACHER_TELEGRAM_ID=${TEACHER_TELEGRAM_ID}
+            - TEACHER_TELEGRAM_ID=${TEACHER_TELEGRAM_ID:-0}
             - COMMUNICATION_MODE=polling
             - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
             - AGENT_ENDPOINT=http://${HOST_IP}:${WORKER_PORT}
