@@ -10,7 +10,7 @@ services:
             - WORKER_ENDPOINT=http://${HOST_IP}:${WORKER_PORT}/mcp/
             - WORKER_TOOL_NAME=execute_plan
             - PLAN_SCHEMA_ANNOTATION_PATH=/app/plan-schema.ann
-            - STORAGE_DB=sqlite
+            - STORAGE_DB=sqlite-memory
         volumes:
             - ./scheduler-plan-schema.ann:/app/plan-schema.ann
 
