@@ -36,6 +36,7 @@ services:
         image: telegram-bot
         environment:
             - USERS_GROUPS_MCP_ENDPOINT=http://${HOST_IP}:${USERS_GROUPS_MCP_PORT}
+            - MCP_REGISTRY_ENDPOINT=http://${HOST_IP}:${MCP_REGISTRY_PORT}
             - TEACHER_TELEGRAM_ID=${TEACHER_TELEGRAM_ID:-0}
             - COMMUNICATION_MODE=polling
             - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
@@ -51,6 +52,10 @@ services:
 
     users-groups-mcp:
         image: users-groups-mcp
+        environment:
+            - MCP_REGISTRY_ENDPOINT=http://${HOST_IP}:${MCP_REGISTRY_PORT}
+            - AGENT_ENDPOINT=http://${HOST_IP}:${WORKER_PORT}
+            - STORAGE_DB=sqlite
         ports:
             - "${USERS_GROUPS_MCP_PORT}:8000"
         volumes:
