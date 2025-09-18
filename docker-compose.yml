@@ -10,6 +10,7 @@ services:
             - WORKER_ENDPOINT=http://${HOST_IP}:${WORKER_PORT}/mcp/
             - WORKER_TOOL_NAME=execute_plan
             - PLAN_SCHEMA_ANNOTATION_PATH=/app/plan-schema.ann
+            - STORAGE_DB=sqlite-memory
         volumes:
             - ./scheduler-plan-schema.ann:/app/plan-schema.ann
 
@@ -58,6 +59,8 @@ services:
             - STORAGE_DB=sqlite
         ports:
             - "${USERS_GROUPS_MCP_PORT}:8000"
+        environment:
+            - STORAGE_DB=sqlite
         volumes:
             - ./users_groups.db:/app/dev.db:rw  
 
