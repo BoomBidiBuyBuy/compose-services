@@ -59,8 +59,6 @@ services:
             - STORAGE_DB=sqlite
         ports:
             - "${USERS_GROUPS_MCP_PORT}:8000"
-        environment:
-            - STORAGE_DB=sqlite
         volumes:
             - ./users_groups.db:/app/dev.db:rw  
 
