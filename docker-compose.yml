@@ -39,10 +39,20 @@ services:
             - USERS_GROUPS_MCP_ENDPOINT=http://${HOST_IP}:${USERS_GROUPS_MCP_PORT}
             - MCP_REGISTRY_ENDPOINT=http://${HOST_IP}:${MCP_REGISTRY_PORT}
             - TEACHER_TELEGRAM_ID=${TEACHER_TELEGRAM_ID:-0}
-            - COMMUNICATION_MODE=polling
+            - COMMUNICATION_MODE=${TELEGRAM_BOT_COMMUNICATION_MODE}
+            - WEBHOOK_PORT=${TELEGRAM_BOT_WEBHOOK_PORT}
+            - WEBHOOK_URL=${TELEGRAM_BOT_WEBHOOK_URL}
+            - WEBHOOK_LISTEN=${TELEGRAM_BOT_WEBHOOK_LISTEN}
+            - SSL_KEY_PATH=/app/private.key
+            - SSL_CERT_PATH=/app/cert.pem
             - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
             - AGENT_ENDPOINT=http://${HOST_IP}:${WORKER_PORT}
             - STORAGE_DB=sqlite
+        ports:
+            - "${TELEGRAM_BOT_WEBHOOK_PORT}:${TELEGRAM_BOT_WEBHOOK_PORT}"
+        volumes:
+            - ./cert.pem:/app/cert.pem
+            - ./private.key:/app/private.key
 
     telegram-mcp:
         image: telegram-mcp

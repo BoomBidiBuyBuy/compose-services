@@ -12,3 +12,6 @@ nohup.out
 
 registry.db
 users_groups.db
+
+cert.pem
+private.key
